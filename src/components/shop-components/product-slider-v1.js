@@ -2,12 +2,23 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 
+import property_one from '../../sample-images/property_1.jpg';
+import property_two from '../../sample-images/property_2.jpg';
+import property_three from '../../sample-images/property_3.jpg';
+import property_four from '../../sample-images/property_4.jpeg';
+
 const ProductSlider = (props) => {
-  const { images } = props;
+  //const { images } = props;
+  const propertyImagesArray = [
+    property_one,
+    property_two,
+    property_three,
+    property_four,
+  ];
 
   const renderSliderImage = () => {
-    return images
-      ? images.map((image, index) => (
+    return propertyImagesArray
+      ? propertyImagesArray.map((image, index) => (
           <div className="col-lg-12" key={index}>
             <div className="ltn__img-slide-item-4">
               <a href={image} data-rel="lightcase:myCollection">

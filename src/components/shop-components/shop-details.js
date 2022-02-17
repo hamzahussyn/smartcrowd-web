@@ -208,7 +208,7 @@ class ShopDetails extends Component {
                             </li>
                           </ul>
                           <ul>
-                          <label>Total Investment</label>
+                            <label>Total Investment</label>
                             <li>
                               <label>Underlying Asset Price: </label>
                               <span>
