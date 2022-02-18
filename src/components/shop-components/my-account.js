@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 import { uploadDocs } from '../../actions/kyc';
 import KYCComponent from '../my-account-components/kyc';
+import {IoWallet} from 'react-icons/io5';
 
 const MyAccountComponent = (props) => {
-  
+  const { user } = props;
+
   let publicUrl = process.env.PUBLIC_URL + '/';
 
   return (
@@ -31,12 +33,6 @@ const MyAccountComponent = (props) => {
                         <a data-bs-toggle="tab" href="#liton_tab_1_2">
                           Orders <i className="fas fa-file-alt" />
                         </a>
-                        <a data-bs-toggle="tab" href="#liton_tab_1_3">
-                          Downloads <i className="fas fa-arrow-down" />
-                        </a>
-                        <a data-bs-toggle="tab" href="#liton_tab_1_4">
-                          address <i className="fas fa-map-marker-alt" />
-                        </a>
                         <a data-bs-toggle="tab" href="#liton_tab_1_5">
                           Account Details <i className="fas fa-user" />
                         </a>
@@ -48,7 +44,7 @@ const MyAccountComponent = (props) => {
                           Email Verification <i className="fas fa-at" />
                         </a>
                         <a data-bs-toggle="tab" href="#liton_tab_1_5">
-                          Smart Crowd Wallet <i className="fas fa-money-alt" />
+                          Smart Crowd Wallet <IoWallet/>
                         </a>
                         <Link className="go-top" to="/login">
                           Logout <i className="fas fa-sign-out-alt" />
@@ -64,8 +60,8 @@ const MyAccountComponent = (props) => {
                       >
                         <div className="ltn__myaccount-tab-content-inner">
                           <p>
-                            Hello <strong>UserName</strong> (not{' '}
-                            <strong>UserName</strong>?{' '}
+                            Hello <strong>{user?.firstname}</strong> (not{' '}
+                            <strong>{user?.firstname}</strong>?{' '}
                             <small>
                               <a href="login-register.html">Log out</a>
                             </small>{' '}
@@ -122,103 +118,6 @@ const MyAccountComponent = (props) => {
                                 </tr>
                               </tbody>
                             </table>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="tab-pane fade" id="liton_tab_1_3">
-                        <div className="ltn__myaccount-tab-content-inner">
-                          <div className="table-responsive">
-                            <table className="table">
-                              <thead>
-                                <tr>
-                                  <th>Product</th>
-                                  <th>Date</th>
-                                  <th>Expire</th>
-                                  <th>Download</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>Carsafe - Car Service PSD Template</td>
-                                  <td>Nov 22, 2020</td>
-                                  <td>Yes</td>
-                                  <td>
-                                    <a href="#">
-                                      <i className="far fa-arrow-to-bottom mr-1" />{' '}
-                                      Download File
-                                    </a>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>Carsafe - Car Service HTML Template</td>
-                                  <td>Nov 10, 2020</td>
-                                  <td>Yes</td>
-                                  <td>
-                                    <a href="#">
-                                      <i className="far fa-arrow-to-bottom mr-1" />{' '}
-                                      Download File
-                                    </a>
-                                  </td>
-                                </tr>
-                                <tr>
-                                  <td>Carsafe - Car Service WordPress Theme</td>
-                                  <td>Nov 12, 2020</td>
-                                  <td>Yes</td>
-                                  <td>
-                                    <a href="#">
-                                      <i className="far fa-arrow-to-bottom mr-1" />{' '}
-                                      Download File
-                                    </a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="tab-pane fade" id="liton_tab_1_4">
-                        <div className="ltn__myaccount-tab-content-inner">
-                          <p>
-                            The following addresses will be used on the checkout
-                            page by default.
-                          </p>
-                          <div className="row">
-                            <div className="col-md-6 col-12 learts-mb-30">
-                              <h4>
-                                Billing Address{' '}
-                                <small>
-                                  <a href="#">edit</a>
-                                </small>
-                              </h4>
-                              <address>
-                                <p>
-                                  <strong>Alex Tuntuni</strong>
-                                </p>
-                                <p>
-                                  1355 Market St, Suite 900 <br />
-                                  San Francisco, CA 94103
-                                </p>
-                                <p>Mobile: (123) 456-7890</p>
-                              </address>
-                            </div>
-                            <div className="col-md-6 col-12 learts-mb-30">
-                              <h4>
-                                Shipping Address{' '}
-                                <small>
-                                  <a href="#">edit</a>
-                                </small>
-                              </h4>
-                              <address>
-                                <p>
-                                  <strong>Alex Tuntuni</strong>
-                                </p>
-                                <p>
-                                  1355 Market St, Suite 900 <br />
-                                  San Francisco, CA 94103
-                                </p>
-                                <p>Mobile: (123) 456-7890</p>
-                              </address>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -295,7 +194,7 @@ const MyAccountComponent = (props) => {
                       </div>
 
                       {/* IDENTITY VERIFICATION */}
-                      <KYCComponent user={props.user}/>
+                      <KYCComponent user={props.user} />
                     </div>
                   </div>
                 </div>

@@ -4,22 +4,33 @@ import { Link } from 'react-router-dom';
 import '../../pages/marketplace/style.css';
 
 const MarketplaceProductCard = (props) => {
-  const { badge, city, imageCount, expectedIncomePerMonth, name } = props;
+  const {
+    id,
+    badge,
+    city,
+    imageCount,
+    expectedIncomePerMonth,
+    minimumInvestment,
+    name,
+  } = props;
 
   let publicUrl = process.env.PUBLIC_URL + '/';
   return (
     <div className="container-fluid">
       <div className="row responsive">
-        
-        <div className="col-lg-10" >
+        <div className="col-lg-10">
           <div className="ltn__product-item ltn__product-item-4 text-center---">
             <div className="product-img">
-              <Link to="/product-details">
-                <img className='property-image' src={publicUrl + 'assets/img/sample-property.webp'} alt="#" />
+              <Link to={`/property/${id}`}>
+                <img
+                  className="property-image"
+                  src={publicUrl + 'assets/img/sample-property.webp'}
+                  alt="#"
+                />
               </Link>
               <div className="product-badge">
                 <ul>
-                  <li className="sale-badge bg-green">For Rent</li>
+                  <li className="sale-badge bg-green">Available</li>
                 </ul>
               </div>
               <div className="product-img-location-gallery">
@@ -27,7 +38,7 @@ const MarketplaceProductCard = (props) => {
                   <ul>
                     <li>
                       <Link to="/contact">
-                        <i className="flaticon-pin" /> Karachi
+                        <i className="flaticon-pin" /> {city}
                       </Link>
                     </li>
                   </ul>
@@ -35,7 +46,7 @@ const MarketplaceProductCard = (props) => {
                 <div className="product-img-gallery go-top">
                   <ul>
                     <li>
-                      <Link to="/product-details">
+                      <Link to={`/property/${id}`}>
                         <i className="fas fa-camera" /> 4
                       </Link>
                     </li>
@@ -46,11 +57,12 @@ const MarketplaceProductCard = (props) => {
             <div className="product-info">
               <div className="product-price">
                 <span>
-                  $34,900<label>/Month</label>
+                  ${minimumInvestment}
+                  <label>-Minimum Investment</label>
                 </span>
               </div>
               <h2 className="product-title go-top">
-                <Link to="/product-details">New Apartment Nice View</Link>
+                <Link to={`/property/${id}`}>{name}</Link>
               </h2>
               {/* <div className="product-description">
             <p>
@@ -121,7 +133,7 @@ const MarketplaceProductCard = (props) => {
                   </li>
                   <li>
                     <span className="go-top">
-                      <Link to="/product-details" title="Product Details">
+                      <Link to={`/property/${id}`} title="Product Details">
                         <i className="flaticon-add" />
                       </Link>
                     </span>
@@ -131,7 +143,6 @@ const MarketplaceProductCard = (props) => {
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );

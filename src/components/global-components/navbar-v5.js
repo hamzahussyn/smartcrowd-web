@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Social from '../section-components/social';
 import CartSlider from '../shop-components/cart-slider';
+import {BsWallet2} from 'react-icons/bs';
 
 class NavbarV5 extends Component {
   render() {
@@ -80,47 +81,6 @@ class NavbarV5 extends Component {
                     <ul>
                       <li className="d-none">
                         {/* ltn__currency-menu */}
-                        <div className="ltn__drop-menu ltn__currency-menu">
-                          <ul>
-                            <li>
-                              <a href="#" className="dropdown-toggle">
-                                <span className="active-currency">USD</span>
-                              </a>
-                              <ul>
-                                <li>
-                                  <a href="login.html">USD - US Dollar</a>
-                                </li>
-                                <li>
-                                  <a href="wishlist.html">
-                                    CAD - Canada Dollar
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="register.html">EUR - Euro</a>
-                                </li>
-                                <li>
-                                  <a href="account.html">GBP - British Pound</a>
-                                </li>
-                                <li>
-                                  <a href="wishlist.html">INR - Indian Rupee</a>
-                                </li>
-                                <li>
-                                  <a href="wishlist.html">
-                                    BDT - Bangladesh Taka
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="wishlist.html">JPY - Japan Yen</a>
-                                </li>
-                                <li>
-                                  <a href="wishlist.html">
-                                    AUD - Australian Dollar
-                                  </a>
-                                </li>
-                              </ul>
-                            </li>
-                          </ul>
-                        </div>
                       </li>
                       <li className="d-none">
                         {/* header-search-1 */}
@@ -172,9 +132,6 @@ class NavbarV5 extends Component {
                                 )}
                                 <li>
                                   <Link to="/my-account">My Account</Link>
-                                </li>
-                                <li>
-                                  <a href="wishlist.html">Wishlist</a>
                                 </li>
                               </ul>
                             </li>
@@ -289,197 +246,17 @@ class NavbarV5 extends Component {
               </div>
               <button className="ltn__utilize-close">×</button>
             </div>
-            <div className="ltn__utilize-menu-search-form">
-              <form method="get" action="/shop">
-                <input type="text" placeholder="Search..." />
-                <button>
-                  <i className="fas fa-search" />
-                </button>
-              </form>
-            </div>
             <div className="ltn__utilize-menu">
               <ul>
                 <li>
-                  <a href="#">Home</a>
-                  <ul className="sub-menu">
-                    <li>
-                      <Link to="/">Home Style 01</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v2">Home Style 02</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v3">Home Style 03</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v4">Home Style 04</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v5">
-                        Home Style 05{' '}
-                        <span className="menu-item-badge">video</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v6">Home Style 06</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v7">Home Style 07</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v8">Home Style 08</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v9">Home Style 09</Link>
-                    </li>
-                    <li>
-                      <Link to="/home-v10">Home Style 10</Link>
-                    </li>
-                  </ul>
+                  <Link to='/'>Home</Link>
                 </li>
                 <li>
-                  <Link to="/about">About</Link>
-                  <ul className="sub-menu">
-                    <li>
-                      <Link to="/about">About</Link>
-                    </li>
-                    <li>
-                      <Link to="/service">Services</Link>
-                    </li>
-                    <li>
-                      <Link to="/service-details">Service Details</Link>
-                    </li>
-                    <li>
-                      <Link to="/portfolio">Portfolio</Link>
-                    </li>
-                    <li>
-                      <Link to="/portfolio-v2">Portfolio - 02</Link>
-                    </li>
-                    <li>
-                      <Link to="/portfolio-details">Portfolio Details</Link>
-                    </li>
-                    <li>
-                      <Link to="/team">Team</Link>
-                    </li>
-                    <li>
-                      <Link to="/team-details">Team Details</Link>
-                    </li>
-                    <li>
-                      <Link to="/faq">FAQ</Link>
-                    </li>
-                    <li>
-                      <Link to="/location">Google Map Locations</Link>
-                    </li>
-                  </ul>
+                  <Link to='/marketplace'>Marketplace</Link>
                 </li>
                 <li>
-                  <Link to="/shop">Shop</Link>
-                  <ul className="sub-menu">
-                    <li>
-                      <Link to="/shop">Shop</Link>
-                    </li>
-                    <li>
-                      <Link to="/shop-grid">Shop Grid</Link>
-                    </li>
-                    <li>
-                      <Link to="/shop-left-sidebar">Shop Left sidebar</Link>
-                    </li>
-                    <li>
-                      <Link to="/shop-right-sidebar">Shop Right sidebar</Link>
-                    </li>
-                    <li>
-                      <Link to="/product-details">Shop Details</Link>
-                    </li>
-                    <li>
-                      <Link to="/cart">Cart</Link>
-                    </li>
-                    <li>
-                      <Link to="/checkout">Checkout</Link>
-                    </li>
-                    <li>
-                      <Link to="/my-account">My Account</Link>
-                    </li>
-                    <li>
-                      <Link to="/login">Sign in</Link>
-                    </li>
-                    <li>
-                      <Link to="/register">Register</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="/blog-grid">News</Link>
-                  <ul className="sub-menu">
-                    <li>
-                      <Link to="/blog">News</Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-grid">News Grid</Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-left-sidebar">News Left sidebar</Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-right-sidebar">News Right sidebar</Link>
-                    </li>
-                    <li>
-                      <Link to="/blog-details">News details</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="#">Pages</Link>
-                  <ul className="sub-menu">
-                    <li>
-                      <Link to="/about">About</Link>
-                    </li>
-                    <li>
-                      <Link to="/service">Services</Link>
-                    </li>
-                    <li>
-                      <Link to="/service-details">Service Details</Link>
-                    </li>
-                    <li>
-                      <Link to="/portfolio">Portfolio</Link>
-                    </li>
-                    <li>
-                      <Link to="/portfolio-2">Portfolio - 02</Link>
-                    </li>
-                    <li>
-                      <Link to="/portfolio-details">Portfolio Details</Link>
-                    </li>
-                    <li>
-                      <Link to="/team">Team</Link>
-                    </li>
-                    <li>
-                      <Link to="/team-details">Team Details</Link>
-                    </li>
-                    <li>
-                      <Link to="/faq">FAQ</Link>
-                    </li>
-                    <li>
-                      <Link to="/history">History</Link>
-                    </li>
-                    <li>
-                      <Link to="/add-listing">Add Listing</Link>
-                    </li>
-                    <li>
-                      <Link to="/locations">Google Map Locations</Link>
-                    </li>
-                    <li>
-                      <Link to="/404">404</Link>
-                    </li>
-                    <li>
-                      <Link to="/contact">Contact</Link>
-                    </li>
-                    <li>
-                      <Link to="/coming-soon">Coming Soon</Link>
-                    </li>
-                  </ul>
-                </li>
-                <li>
-                  <Link to="/contact">Contact</Link>
-                </li>
+                  <Link to='/team'>Team</Link>
+                </li>  
               </ul>
             </div>
             <div className="ltn__utilize-buttons ltn__utilize-buttons-2">
@@ -493,21 +270,20 @@ class NavbarV5 extends Component {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/wishlist" title="Wishlist">
+                  <Link to="/my-account" title="My Account">
                     <span className="utilize-btn-icon">
-                      <i className="far fa-heart" />
-                      <sup>3</sup>
+                      <BsWallet2/>
                     </span>
-                    Wishlist
+                    Wallet
                   </Link>
                 </li>
                 <li>
                   <Link to="/cart" title="Shoping Cart">
                     <span className="utilize-btn-icon">
                       <i className="fas fa-shopping-cart" />
-                      <sup>5</sup>
+                      <sup>0</sup>
                     </span>
-                    Shoping Cart
+                    Cart
                   </Link>
                 </li>
               </ul>

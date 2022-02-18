@@ -5,6 +5,7 @@ import { uploadDocs } from '../../actions/kyc';
 
 const KYCComponent = (props) => {
   const kycImages = props.user?.kycImages ? props.user.kycImages : false;
+  const verifiedUser = props.user?.active ? props.user?.active : false;
   const [kycDocuments, setKycDocuments] = useState({
     kycFront: null,
     kycBack: null,
@@ -40,10 +41,6 @@ const KYCComponent = (props) => {
     setDocumentsUploaded(response);
     setLoading(false);
   };
-
-  useEffect(() => {
-    console.log(kycDocuments);
-  }, [kycDocuments]);
 
   return (
     <div className="tab-pane fade" id="liton_tab_1_6">
@@ -88,7 +85,15 @@ const KYCComponent = (props) => {
         </div>
       )}
       {(documentsUploaded || kycImages) && (
-        <p>Your documents were successfully uploaded for verification.</p>
+        <div className="ltn__myaccount-tab-content-inner">
+          <p>Your documents were successfully uploaded for verification.</p>
+        </div>
+      )}
+      {verifiedUser && (
+        <div className="ltn__myaccount-tab-content-inner">
+          <br />
+          <p><strong>Status: </strong>Your identity has been verified by our verification service.</p>
+        </div>
       )}
     </div>
   );

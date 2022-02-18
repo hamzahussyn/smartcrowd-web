@@ -30,7 +30,7 @@ const ProductSlider = (props) => {
             {listing.length > 0 &&
               listing.map((property, index) => (
                 <ProductCard
-                  id={index}
+                  id={property.id}
                   name={property.name}
                   city={property.city}
                   minimumInvestment={property.Unit.priceUsd}

@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import parse from 'html-react-parser';
 
-import property_one from '../../sample-images/property_1.jpg';
-import property_two from '../../sample-images/property_2.jpg';
-import property_three from '../../sample-images/property_3.jpg';
-import property_four from '../../sample-images/property_4.jpeg';
-
 const ProductSlider = (props) => {
   //const { images } = props;
+  const { id } = props;
+
   const propertyImagesArray = [
-    property_one,
-    property_two,
-    property_three,
-    property_four,
+    require(`../../sample-images/property_${1}_1.jpg`),
+    require(`../../sample-images/property_${1}_2.jpg`),
+    require(`../../sample-images/property_${1}_3.jpg`),
+    require(`../../sample-images/property_${1}_4.jpeg`),
   ];
 
   const renderSliderImage = () => {
@@ -22,7 +19,7 @@ const ProductSlider = (props) => {
           <div className="col-lg-12" key={index}>
             <div className="ltn__img-slide-item-4">
               <a href={image} data-rel="lightcase:myCollection">
-                <img src={image} alt="Image" className='product-slider-image' />
+                <img src={image} alt="Image" className="product-slider-image" />
               </a>
             </div>
           </div>

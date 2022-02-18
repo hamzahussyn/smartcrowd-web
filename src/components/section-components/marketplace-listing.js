@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import MarketplaceProductCard from './marketplace-product';
 
 import '../../pages/marketplace/style.css';
 
-const MarketplaceListing = () => {
+const MarketplaceListing = (props) => {
+  const { listing } = props;
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -21,8 +23,16 @@ const MarketplaceListing = () => {
           </div>
         </div>
       </div>
-      <MarketplaceProductCard />
-      <MarketplaceProductCard />
+      {listing &&
+        listing.map((property, index) => (
+          <MarketplaceProductCard
+            key={index}
+            id={property.id}
+            name={property.name}
+            city={property.city}
+            minimumInvestment={property.Unit.priceUsd}
+          />
+        ))}
     </div>
   );
 };

@@ -5,15 +5,21 @@ import NavbarV5 from '../../components/global-components/navbar-v5';
 import MarketplaceListing from '../../components/section-components/marketplace-listing';
 import { getCurrentUser } from '../../actions/user';
 import { setNavbarTitle } from '../../helpers/navbar';
+import { getPropertyListing } from '../../actions/property';
 
 const Marketplace = () => {
-  let [currentUser, setCurrentUser] = useState([]);
-  let [navHeader, setNavHeader] = useState('');
+  const [propertyListing, setPropertyListing] = useState([]);
+  const [currentUser, setCurrentUser] = useState([]);
+  const [navHeader, setNavHeader] = useState('');
 
   useEffect(() => {
     getCurrentUser().then((user) => {
       setNavbarTitle(user, setCurrentUser, setNavHeader);
     });
+
+    getPropertyListing().then((response) =>
+      setPropertyListing([...response.data])
+    );
   }, []);
 
   useEffect(() => {
@@ -22,8 +28,8 @@ const Marketplace = () => {
 
   return (
     <div>
-      <NavbarV5 header={navHeader} user={currentUser}/>
-      <MarketplaceListing />
+      <NavbarV5 header={navHeader} user={currentUser} />
+      <MarketplaceListing listing={propertyListing}/>
       <Footer />
     </div>
   );

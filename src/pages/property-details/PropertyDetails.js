@@ -7,8 +7,10 @@ import Footer from '../../components/global-components/footer';
 import { getCurrentUser } from '../../actions/user';
 import { setNavbarTitle } from '../../helpers/navbar';
 import { getPropertyWithId } from '../../actions/property';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const PropertyDetails = () => {
+const PropertyDetails = (props) => {
+  const { id } = useParams();
   const [currentUser, setCurrentUser] = useState([]);
   const [navHeader, setNavHeader] = useState('');
   const [propertyData, setPropertyData] = useState({});
@@ -17,25 +19,18 @@ const PropertyDetails = () => {
     getCurrentUser().then((user) => {
       setNavbarTitle(user, setCurrentUser, setNavHeader);
     });
-    getPropertyWithId(2).then((response) => {
+    getPropertyWithId(id).then((response) => {
       setPropertyData(response.data);
       console.log(response.data);
     });
   }, []);
 
-  // useEffect(() => {
-  //   getPropertyWithId(2).then((response) => {
-  //     console.log(response);
-  //     setPropertyData(response);
-  //   });
-  // }, [propertyData]);
-
   return (
     <div>
       <Navbar header={navHeader} user={currentUser} />
       <PageHeader headertitle="Property Details" customclass="mb-0" />
-      <ProductSlider images={propertyData?.Images} />
-      <ProductDetails property={propertyData}/>
+      <ProductSlider images={propertyData?.Images} id={id}/>
+      <ProductDetails property={propertyData} user={currentUser}/>
       <Footer />
     </div>
   );

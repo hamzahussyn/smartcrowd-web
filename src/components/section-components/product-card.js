@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCard = (props) => {
-  const {badge, city, imageCount, expectedIncomePerMonth, minimumInvestment, name, } = props;
+  const {id, badge, city, imageCount, expectedIncomePerMonth, minimumInvestment, name, } = props;
 
   let publicUrl = process.env.PUBLIC_URL + '/';
   return (
     <div className="col-lg-12">
       <div className="ltn__product-item ltn__product-item-4 text-center---">
         <div className="product-img go-top">
-          <Link to="/product-details">
-            <img src={publicUrl + 'assets/img/sample-property.webp'} alt="#" />
+          <Link to={`/property/${id}`}>
+            <img src={require(`../../sample-images/thumbnails/property_${id}.jpeg`)} alt="#" />
           </Link>
           <div className="product-badge">
             <ul>
@@ -30,7 +30,7 @@ const ProductCard = (props) => {
             <div className="product-img-gallery go-top">
               <ul>
                 <li>
-                  <Link to="/product-details">
+                  <Link to={`/property/${id}`}>
                     <i className="fas fa-camera" /> 4
                   </Link>
                 </li>
@@ -45,7 +45,7 @@ const ProductCard = (props) => {
             </span>
           </div>
           <h2 className="product-title go-top">
-            <Link to="/product-details">{name}</Link>
+            <Link to={`/property/${id}`}>{name}</Link>
           </h2>
           {/* <div className="product-description">
             <p>
@@ -113,7 +113,7 @@ const ProductCard = (props) => {
               </li>
               <li>
                 <span className="go-top">
-                  <Link to="/product-details" title="Product Details">
+                  <Link to={`property/${id}`} title="Product Details">
                     <i className="flaticon-add" />
                   </Link>
                 </span>
