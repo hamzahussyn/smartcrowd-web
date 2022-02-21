@@ -7,10 +7,16 @@ import AuthenticatedUser from '../../hoc/authenticated-user';
 import { getCurrentUser } from '../../actions/user';
 import { setNavbarTitle } from '../../helpers/navbar';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { getCartContents } from '../../actions/cart';
 
 const CartComponent = () => {
-  let [currentUser, setCurrentUser] = useState([]);
-  let [navHeader, setNavHeader] = useState('');
+  const [currentUser, setCurrentUser] = useState({});
+  const [navHeader, setNavHeader] = useState('');
+  const [cart, setCart] = useState({
+    cartItems: new Array(),
+    cartItemsCount: 0,
+    cartNetTotal: 0.0,
+  });
 
   useEffect(() => {
     getCurrentUser().then((user) => {
@@ -18,17 +24,24 @@ const CartComponent = () => {
     });
   }, []);
 
-  const restrictedVerification = () =>
-    !currentUser.active && !currentUser.approved ? <Redirect to="/" /> : '';
+  useEffect(() => {
+    if (Object.keys(currentUser).length) {
+      getCartContents(currentUser.id).then((response) => {
+        setCart({
+          cartItems: response.data.CartItems,
+          cartItemsCount: response.data.CartItems.length,
+          cartNetTotal: response.data.NetTotal,
+        });
+      });
+    }
+  }, [currentUser]);
 
   return (
     <div>
-      {restrictedVerification()}
-
-      <Navbar header={navHeader} user={setCurrentUser} />
+      <Navbar header={navHeader} user={currentUser} />
       <PageHeader headertitle="Cart" customclass="mb-0" />
 
-      <Cart />
+      <Cart cart={cart}/>
       <Footer />
     </div>
   );

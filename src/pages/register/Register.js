@@ -4,6 +4,7 @@ import NavbarV5 from '../../components/global-components/navbar-v5';
 import PageHeader from '../../components/global-components/page-header';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 const Register = () => {
   let [email, setEmail] = useState('');
@@ -14,6 +15,7 @@ const Register = () => {
   let [isUSCitizen, setIsUSCitizen] = useState(false);
   let [agreeTermsAndConditions, setAgreeTermsAndConditions] = useState(false);
   let [submitClicked, setSubmitClicked] = useState(false);
+  let [registrationSuccess, setRegistrationSuccess] = useState(false);
   let [errors, setErrors] = useState({});
 
   const handleChange = (event, setter) => {
@@ -120,7 +122,22 @@ const Register = () => {
           isUsCitizen: isUSCitizen,
           password: password,
         },
-      }).then((res) => console.log(res));
+      })
+        .then((response) => {
+          console.log(response);
+          let accessToken = response.data.included[0].attributes.token;
+          let refreshToken = response.data.included[1].attributes.token;
+
+          localStorage.setItem('access-token', accessToken);
+          localStorage.setItem('refresh-token', refreshToken);
+
+          setRegistrationSuccess(true);
+
+          Promise.resolve(response);
+        })
+        .catch((error) => {
+          Promise.reject(error);
+        });
     }
   };
 
@@ -159,7 +176,7 @@ const Register = () => {
                   <input
                     type="text"
                     name="firstname"
-                    placeholder="First Name"
+                    placeholder="First Name*"
                     onChange={(event) => handleChange(event, setFirstName)}
                   />
 
@@ -169,7 +186,7 @@ const Register = () => {
                   <input
                     type="text"
                     name="lastname"
-                    placeholder="Last Name"
+                    placeholder="Last Name*"
                     onChange={(event) => handleChange(event, setLastName)}
                   />
 
@@ -264,6 +281,7 @@ const Register = () => {
               </div>
             </div>
           </div>
+          {registrationSuccess && (<Redirect to='/'/>)}
         </div>
       </div>
 

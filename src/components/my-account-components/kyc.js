@@ -22,7 +22,7 @@ const KYCComponent = (props) => {
     });
   };
 
-  const handleKycDocUpload = (event) => {
+  const handleKycDocUpload = async (event) => {
     setLoading(true);
 
     if (kycDocuments.kycBack === null || kycDocuments.kycFront === null) {
@@ -36,7 +36,7 @@ const KYCComponent = (props) => {
     KycFrontFormData.append('kycFront', kycDocuments.kycFront);
     KycBackFormData.append('kycBack', kycDocuments.kycBack);
 
-    let response = uploadDocs(KycFrontFormData, KycBackFormData);
+    let response = await uploadDocs(KycFrontFormData, KycBackFormData);
 
     setDocumentsUploaded(response);
     setLoading(false);

@@ -8,6 +8,7 @@ import { getCurrentUser } from '../../actions/user';
 import { setNavbarTitle } from '../../helpers/navbar';
 import { getPropertyWithId } from '../../actions/property';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { getCartContents } from '../../actions/cart';
 
 const PropertyDetails = (props) => {
   const { id } = useParams();
@@ -21,7 +22,6 @@ const PropertyDetails = (props) => {
     });
     getPropertyWithId(id).then((response) => {
       setPropertyData(response.data);
-      console.log(response.data);
     });
   }, []);
 

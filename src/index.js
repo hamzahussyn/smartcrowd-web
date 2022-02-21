@@ -49,4 +49,4 @@ class Root extends Component {
 
 export default Root;
 
-ReactDOM.render(<Root />, document.getElementById('smart-crowd'));
+ReactDOM.render(<Root />, document.getElementById('quarter'));

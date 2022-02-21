@@ -5,11 +5,19 @@ import parse from 'html-react-parser';
 import { uploadDocs } from '../../actions/kyc';
 import KYCComponent from '../my-account-components/kyc';
 import {IoWallet} from 'react-icons/io5';
+import EmailVerificationComponent from '../my-account-components/email-verification';
+import AccountDetailsComponent from '../my-account-components/account';
+import Wallet from '../my-account-components/wallet';
 
 const MyAccountComponent = (props) => {
   const { user } = props;
 
   let publicUrl = process.env.PUBLIC_URL + '/';
+
+  const handleLogout = (event) => {
+    localStorage.removeItem('access-token');
+    localStorage.removeItem('refresh-token');
+  }
 
   return (
     <div className="liton__wishlist-area pb-100 pt-100">
@@ -40,13 +48,13 @@ const MyAccountComponent = (props) => {
                           Identity Verification{' '}
                           <i className="fas fa-address-card" />
                         </a>
-                        <a data-bs-toggle="tab" href="#liton_tab_1_5">
+                        <a data-bs-toggle="tab" href="#liton_tab_1_7">
                           Email Verification <i className="fas fa-at" />
                         </a>
-                        <a data-bs-toggle="tab" href="#liton_tab_1_5">
+                        <a data-bs-toggle="tab" href="#liton_tab_1_8">
                           Smart Crowd Wallet <IoWallet/>
                         </a>
-                        <Link className="go-top" to="/login">
+                        <Link className="go-top" to="/login" onClick={handleLogout}>
                           Logout <i className="fas fa-sign-out-alt" />
                         </Link>
                       </div>
@@ -89,7 +97,7 @@ const MyAccountComponent = (props) => {
                                 </tr>
                               </thead>
                               <tbody>
-                                <tr>
+                                {/* <tr>
                                   <td>1</td>
                                   <td>Jun 22, 2019</td>
                                   <td>Pending</td>
@@ -115,86 +123,24 @@ const MyAccountComponent = (props) => {
                                   <td>
                                     <a href="cart.html">View</a>
                                   </td>
-                                </tr>
+                                </tr> */}
                               </tbody>
                             </table>
                           </div>
                         </div>
                       </div>
-                      <div className="tab-pane fade" id="liton_tab_1_5">
-                        <div className="ltn__myaccount-tab-content-inner">
-                          <p>
-                            The following addresses will be used on the checkout
-                            page by default.
-                          </p>
-                          <div className="ltn__form-box">
-                            <form method="GET">
-                              <div className="row mb-50">
-                                <div className="col-md-6">
-                                  <label>First name:</label>
-                                  <input type="text" name="ltn__name" />
-                                </div>
-                                <div className="col-md-6">
-                                  <label>Last name:</label>
-                                  <input type="text" name="ltn__lastname" />
-                                </div>
-                                <div className="col-md-6">
-                                  <label>Display Name:</label>
-                                  <input
-                                    type="text"
-                                    name="ltn__lastname"
-                                    placeholder="Ethan"
-                                  />
-                                </div>
-                                <div className="col-md-6">
-                                  <label>Display Email:</label>
-                                  <input
-                                    type="email"
-                                    name="ltn__lastname"
-                                    placeholder="example@example.com"
-                                  />
-                                </div>
-                              </div>
-                              <fieldset>
-                                <legend>Password change</legend>
-                                <div className="row">
-                                  <div className="col-md-12">
-                                    <label>
-                                      Current password (leave blank to leave
-                                      unchanged):
-                                    </label>
-                                    <input type="password" name="ltn__name" />
-                                    <label>
-                                      New password (leave blank to leave
-                                      unchanged):
-                                    </label>
-                                    <input
-                                      type="password"
-                                      name="ltn__lastname"
-                                    />
-                                    <label>Confirm new password:</label>
-                                    <input
-                                      type="password"
-                                      name="ltn__lastname"
-                                    />
-                                  </div>
-                                </div>
-                              </fieldset>
-                              <div className="btn-wrapper">
-                                <button
-                                  type="submit"
-                                  className="btn theme-btn-1 btn-effect-1 text-uppercase"
-                                >
-                                  Save Changes
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
+                      
+                      {/* ACCOUNT DETAILS */}
+                      <AccountDetailsComponent user={props.user}/>
 
                       {/* IDENTITY VERIFICATION */}
                       <KYCComponent user={props.user} />
+
+                      {/* EMAIL VERIFICATION */}
+                      <EmailVerificationComponent user={props.user}/>
+
+                      {/* SMART CROWD WALLET */}
+                      <Wallet/>
                     </div>
                   </div>
                 </div>

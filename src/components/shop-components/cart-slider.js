@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const CartSlider = (props) => {
   let publicUrl = process.env.PUBLIC_URL + '/';
+  const { cart } = props;
   const active = props.user?.active ? props.user.active : false;
   const approved = props.user?.approved ? props.user.approved : false;
   const token = localStorage.getItem('access-token');
@@ -14,24 +15,39 @@ const CartSlider = (props) => {
     return ACCESS_TOKEN && REFRESH_TOKEN ? true : false;
   };
 
-  const cartItem = (item) => {
+  const cartItem = (item, key) => {
     return (
-      <div className="mini-cart-item clearfix">
+      <div className="mini-cart-item clearfix" key={key}>
         <div className="mini-cart-img go-top">
-          <Link to="/product-details">
-            <img src={publicUrl + 'assets/img/product/1.png'} alt="Image" />
+          <Link to={`/property/${item.Property.id}`}>
+            <img
+              src={require(`../../sample-images/thumbnails/property_${item.Property.id}.jpeg`)}
+              alt="Image"
+            />
           </Link>
-          <span className="mini-cart-item-delete">
+          {/* <span className="mini-cart-item-delete">
             <i className="icon-cancel" />
-          </span>
+          </span> */}
         </div>
         <div className="mini-cart-info go-top">
           <h6>
-            <Link to="/product-details">Wheel Bearing Retainer</Link>
+            <Link to={`/property/${item.Property.id}`}>
+              {item.Property.name}
+            </Link>
           </h6>
-          <span className="mini-cart-quantity">1 x $65.00</span>
+          <span className="mini-cart-quantity">
+            {item.units} Tokens x ${item.Property.Unit.priceUsd} = $
+            {item.subTotal}
+          </span>
         </div>
       </div>
+    );
+  };
+
+  const cartItemList = () => {
+    return (
+      cart.cartItems.length &&
+      cart.cartItems.map((item, index) => cartItem(item, index))
     );
   };
 
@@ -46,14 +62,14 @@ const CartSlider = (props) => {
           <button className="ltn__utilize-close">×</button>
         </div>
         <div className="mini-cart-product-area ltn__scrollbar">
-          {isAuthenticated() && approved && active && cartItem()}
+          {isAuthenticated() && approved && active && cartItemList()}
         </div>
         <div className="mini-cart-footer">
           {isAuthenticated() && approved && active && (
             <div>
               <div className="mini-cart-sub-total">
                 <h5>
-                  Subtotal: <span>$310.00</span>
+                  Total: <span>${cart.cartNetTotal}</span>
                 </h5>
               </div>
               <div className="btn-wrapper go-top">
@@ -64,7 +80,7 @@ const CartSlider = (props) => {
                   Checkout
                 </Link>
               </div>
-              <p>Free Shipping on All Orders Over $100!</p>
+              <p>Payments are accepted in USDC</p>
             </div>
           )}
           {!isAuthenticated() && (

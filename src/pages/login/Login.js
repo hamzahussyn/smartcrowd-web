@@ -5,13 +5,15 @@ import axios from 'axios';
 import Footer from '../../components/global-components/footer';
 import NavbarV5 from '../../components/global-components/navbar-v5';
 import PageHeader from '../../components/global-components/page-header';
+import { Redirect } from 'react-router-dom';
 
 const Login = () => {
-  let [email, setEmail] = useState('');
-  let [password, setPassword] = useState('');
-  let [submitClicked, setSubmitClicked] = useState(false);
-  let [errors, setErrors] = useState({});
-  let [requestError, setRequestError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [submitClicked, setSubmitClicked] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [requestError, setRequestError] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState(false);
 
   let publicUrl = process.env.PUBLIC_URL + '/';
 
@@ -71,6 +73,7 @@ const Login = () => {
           localStorage.setItem('access-token', accessToken);
           localStorage.setItem('refresh-token', refreshToken);
 
+          setLoginSuccess(true);
           Promise.resolve(response);
         })
         .catch((error) => {
@@ -152,11 +155,11 @@ const Login = () => {
                       SIGN IN
                     </button>
                   </div>
-                  <div className="go-to-btn mt-20">
+                  {/* <div className="go-to-btn mt-20">
                     <a href="#">
                       <small>FORGOTTEN YOUR PASSWORD?</small>
                     </a>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -176,6 +179,7 @@ const Login = () => {
               </div>
             </div>
           </div>
+          {loginSuccess && (<Redirect to='/'/>)}
         </div>
       </div>
       <Footer />

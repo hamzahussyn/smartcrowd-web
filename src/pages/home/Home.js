@@ -13,7 +13,7 @@ import { setNavbarTitle } from '../../helpers/navbar';
 
 const Home = () => {
   const [propertyListing, setPropertyListing] = useState([]);
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
   const [navHeader, setNavHeader] = useState('');
 

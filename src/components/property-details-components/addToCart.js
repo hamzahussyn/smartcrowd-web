@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { addTokensToCart } from '../../actions/cart';
 
 const AddToCart = (props) => {
   const { property, userId } = props;
@@ -18,12 +19,22 @@ const AddToCart = (props) => {
       return;
     }
 
-    if(units > property?.Unit?.unitsRemaining || units < 0) {
+    if (units > property?.Unit?.unitsRemaining || units < 0) {
       setError('The Tokens must be in range.');
       return;
     }
 
-    
+    let requestBody = new Object();
+
+    requestBody.id = userId;
+    requestBody.units = units;
+    requestBody.propertyId = property.id;
+
+    addTokensToCart(requestBody).then((response) =>
+      setFeedback(response?.Message)
+    );
+
+    return;
   };
 
   return (
