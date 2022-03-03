@@ -9,7 +9,7 @@ const config = {
   },
 };
 
-const ENVIRONMENT = process.env.NODE_ENV;
+const ENVIRONMENT = 'production';
 
 const getConfig = () => {
   if (ENVIRONMENT === 'development') {
