@@ -5,7 +5,8 @@ import axios from 'axios';
 import Footer from '../../components/global-components/footer';
 import NavbarV5 from '../../components/global-components/navbar-v5';
 import PageHeader from '../../components/global-components/page-header';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import getConfig from '../../config';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -155,11 +156,11 @@ const Login = () => {
                       SIGN IN
                     </button>
                   </div>
-                  {/* <div className="go-to-btn mt-20">
-                    <a href="#">
+                  <div className="go-to-btn mt-20">
+                    <a href={`${getConfig().FRONTEND_URL}/forget-password`}>
                       <small>FORGOTTEN YOUR PASSWORD?</small>
                     </a>
-                  </div> */}
+                  </div>
                 </div>
               </div>
             </div>
@@ -179,7 +180,7 @@ const Login = () => {
               </div>
             </div>
           </div>
-          {loginSuccess && (<Redirect to='/'/>)}
+          {loginSuccess && (<Navigate to='/'/>)}
         </div>
       </div>
       <Footer />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { removeItemFromCart, updateCartItems } from '../../actions/cart';
 
@@ -199,7 +199,7 @@ const Cart = (props) => {
             </div>
           </div>
         </div>
-        {buttonClicked && <Redirect to="/cart" />}
+        {buttonClicked && <Navigate to="/cart" />}
       </div>
     </div>
   );

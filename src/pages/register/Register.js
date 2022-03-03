@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 import Footer from '../../components/global-components/footer';
 import NavbarV5 from '../../components/global-components/navbar-v5';
 import PageHeader from '../../components/global-components/page-header';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
 
 const Register = () => {
   let [email, setEmail] = useState('');
@@ -124,7 +125,6 @@ const Register = () => {
         },
       })
         .then((response) => {
-          console.log(response);
           let accessToken = response.data.included[0].attributes.token;
           let refreshToken = response.data.included[1].attributes.token;
 
@@ -281,7 +281,7 @@ const Register = () => {
               </div>
             </div>
           </div>
-          {registrationSuccess && (<Redirect to='/'/>)}
+          {registrationSuccess && (<Navigate to='/'/>)}
         </div>
       </div>
 

@@ -1,11 +1,12 @@
 import axios from 'axios';
+import getConfig from '../config';
 
 export const uploadDocs = async (KycFrontFormData, KycBackFormData) => {
   const token = localStorage.getItem('access-token');
 
   let [kycFrontUpload, kycBackUpload] = await Promise.all([
     axios({
-      url: 'https://smart-crowd-api.herokuapp.com/api/users/add-kyc-front',
+      url: `${getConfig().BACKEND_URL}/users/add-kyc-front`,
       method: 'POST',
       headers: {
         'x-access-token': token,
@@ -13,7 +14,7 @@ export const uploadDocs = async (KycFrontFormData, KycBackFormData) => {
       data: KycFrontFormData,
     }),
     axios({
-      url: 'https://smart-crowd-api.herokuapp.com/api/users/add-kyc-back',
+      url: `${getConfig().BACKEND_URL}/users/add-kyc-back`,
       method: 'POST',
       headers: {
         'x-access-token': token,

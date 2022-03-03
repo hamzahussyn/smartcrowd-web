@@ -7,7 +7,7 @@ import Footer from '../../components/global-components/footer';
 import { getCurrentUser } from '../../actions/user';
 import { setNavbarTitle } from '../../helpers/navbar';
 import { getPropertyWithId } from '../../actions/property';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useParams } from 'react-router-dom';
 import { getCartContents } from '../../actions/cart';
 
 const PropertyDetails = (props) => {

@@ -1,10 +1,11 @@
 import axios from 'axios';
+import getConfig from '../config';
 
 export const addTokensToCart = (body) => {
   const token = localStorage.getItem('access-token') || '';
 
   return axios({
-    url: 'https://smart-crowd-api.herokuapp.com/api/cart/add',
+    url: `${getConfig().BACKEND_URL}/cart/add`,
     method: 'POST',
     headers: {
       'x-access-token': token,
@@ -33,7 +34,7 @@ export const getCartContents = (id) => {
   }
 
   return axios({
-    url: `https://smart-crowd-api.herokuapp.com/api/users/${id}/get-cart`,
+    url: `${getConfig().BACKEND_URL}/users/${id}/get-cart`,
     method: 'GET',
     headers: {
       'x-access-token': token,
@@ -61,7 +62,7 @@ export const removeItemFromCart = (body) => {
   }
 
   return axios({
-    url: `https://smart-crowd-api.herokuapp.com/api/cart/remove`,
+    url: `${getConfig().BACKEND_URL}/cart/remove`,
     method: 'DELETE',
     headers: {
       'x-access-token': token,
@@ -94,7 +95,7 @@ export const updateCartItems = async (body) => {
   for(let i=0 ; i<body.length ; i++){
     updateRequestArray.push(
       axios({
-        url: `https://smart-crowd-api.herokuapp.com/api/cart/edit`,
+        url: `${getConfig().BACKEND_URL}/cart/edit`,
         method: 'PATCH',
         headers: {
           'x-access-token': token

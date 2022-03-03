@@ -5,7 +5,7 @@ import { uploadDocs } from '../../actions/kyc';
 
 const KYCComponent = (props) => {
   const kycImages = props.user?.kycImages ? props.user.kycImages : false;
-  const verifiedUser = props.user?.active ? props.user?.active : false;
+  const verifiedUser = props.user?.approved ? props.user?.approved : false;
   const [kycDocuments, setKycDocuments] = useState({
     kycFront: null,
     kycBack: null,

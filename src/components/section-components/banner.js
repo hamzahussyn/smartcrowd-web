@@ -34,7 +34,7 @@ class Banner extends Component {
                     </div>
                     <div className="btn-wrapper animated ">
                       <Link
-                        to="/about"
+                        to="/marketplace"
                         className="theme-btn-1 btn btn-effect-1 go-top"
                       >
                         Get Started

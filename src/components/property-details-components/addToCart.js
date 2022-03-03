@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import { addTokensToCart } from '../../actions/cart';
 
 const AddToCart = (props) => {
@@ -7,6 +9,8 @@ const AddToCart = (props) => {
   const [numberOfTokens, setNumberOfTokens] = useState(null);
   const [feedback, setFeedback] = useState('');
   const [error, setError] = useState('');
+
+  const authenticated = userId ? true : false;
 
   const handleAddToCart = () => {
     setError('');
@@ -53,26 +57,40 @@ const AddToCart = (props) => {
           You can invest with as much amount as you want, even with the minimum
           price of the token.
         </p>
-        <div className="row">
-          <div className="col-md-12">
-            <label>Add tokens to your cart:</label>
-            <input
-              type="text"
-              name="ltn__name"
-              placeholder="Enter here"
-              onChange={(event) => setNumberOfTokens(event.target.value)}
-            />
+        {authenticated ? (
+          <div className="row">
+            <div className="col-md-12">
+              <label>Add tokens to your cart:</label>
+              <input
+                type="number"
+                name="ltn__name"
+                placeholder="Enter here"
+                onChange={(event) => setNumberOfTokens(event.target.value)}
+              />
+            </div>
           </div>
+        ) : null}
+      </div>
+      {authenticated ? (
+        <div className="btn-wrapper">
+          <button
+            className="btn theme-btn-1 btn-effect-1 text-uppercase col-md-12"
+            onClick={handleAddToCart}
+          >
+            Add to Cart
+          </button>
         </div>
-      </div>
-      <div className="btn-wrapper">
-        <button
-          className="btn theme-btn-1 btn-effect-1 text-uppercase col-md-12"
-          onClick={handleAddToCart}
-        >
-          Add to Cart
-        </button>
-      </div>
+      ) : (
+        <div>
+          <Link
+            to="/login"
+            className="btn-wrapper col-md-12 theme-btn-1 btn btn-effect-1"
+          >
+            Sign in
+          </Link>
+          <p>Sign in to add tokens to your cart.</p>
+        </div>
+      )}
       {feedback.length > 0 && <p>{feedback}</p>}
       {error.length > 0 && <p>{error}</p>}
     </div>

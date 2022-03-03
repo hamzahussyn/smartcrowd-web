@@ -1,10 +1,11 @@
 import axios from 'axios';
+import getConfig from '../config';
 
 export const getPropertyListing = () => {
   const token = localStorage.getItem('access-token') || '';
 
   return axios({
-    url: 'https://smart-crowd-api.herokuapp.com/api/property/',
+    url: `${getConfig().BACKEND_URL}/property/`,
     method: 'GET',
     headers: {
       'x-access-token': token,
@@ -17,9 +18,9 @@ export const getPropertyListing = () => {
 
 export const getPropertyWithId = (id) => {
   const token = localStorage.getItem('access-token') || '';
-
+  console.log(process.env);
   return axios({
-    url: `https://smart-crowd-api.herokuapp.com/api/property/${id}/get-details`,
+    url: `${getConfig().BACKEND_URL}/property/${id}/get-details`,
     method: 'GET',
     headers: {
       'x-access-token': token,

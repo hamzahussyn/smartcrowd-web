@@ -6,7 +6,7 @@ import Cart from '../../components/shop-components/cart';
 import AuthenticatedUser from '../../hoc/authenticated-user';
 import { getCurrentUser } from '../../actions/user';
 import { setNavbarTitle } from '../../helpers/navbar';
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
+import { Navigate } from 'react-router-dom';
 import { getCartContents } from '../../actions/cart';
 
 const CartComponent = () => {

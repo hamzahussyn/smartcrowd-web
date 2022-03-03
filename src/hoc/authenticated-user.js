@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 const AuthenticatedUser = (WrappedComponent) => {
   return class AuthenticatedUserComponent extends Component {
@@ -16,7 +16,7 @@ const AuthenticatedUser = (WrappedComponent) => {
           {this.isAuthenticated() === true ? (
             <WrappedComponent {...this.props} />
           ) : (
-            <Redirect to="/login" />
+            <Navigate to="/login" />
           )}
         </div>
       );

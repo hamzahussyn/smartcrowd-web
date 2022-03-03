@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
+  Routes,
 } from 'react-router-dom';
 
 //New Imports
@@ -16,6 +16,8 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import MyAccount from './pages/my-account/MyAccount';
 import NotFound from './pages/not-found/NotFound';
+import ForgetPassword from './pages/forget-password/ForgetPassword';
+import ForgetPasswordReset from './pages/forget-password-reset/ForgetPasswordReset';
 import { getCurrentUser } from './actions/user';
 
 
@@ -30,18 +32,20 @@ class Root extends Component {
   render() {
     return (
       <Router forceRefresh>
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/marketplace" component={Marketplace}/>
-          <Route path="/team" component={Team}/>
-          <Route path="/property/:id" component={PropertyDetails}/>
-          <Route path="/cart" component={Cart}/>
-          <Route path="/login" component={Login}/>
-          <Route path="/register" component={Register}/>
-          <Route path="/my-account" component={MyAccount}/>
-          <Route path="/test" component={TestComponent}/>
-          <Route component={NotFound} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/marketplace" element={<Marketplace/>}/>
+          <Route path="/team" element={<Team/>}/>
+          <Route path="/property/:id" element={<PropertyDetails/>}/>
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/my-account" element={<MyAccount/>}/>
+          <Route path="/test" element={<TestComponent/>}/>
+          <Route path="/forget-password" element={<ForgetPassword/>}/>
+          <Route path="/forget-password/reset" element={<ForgetPasswordReset/>}/>
+          <Route element={<NotFound/>} />
+        </Routes>
       </Router>
     );
   }

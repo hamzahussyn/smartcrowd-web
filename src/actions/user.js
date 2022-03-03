@@ -1,4 +1,5 @@
 import axios from 'axios';
+import getConfig from '../config';
 
 export const getCurrentUser = () => {
   const token = localStorage.getItem('access-token');
@@ -15,7 +16,7 @@ export const getCurrentUser = () => {
     headers: {
       'x-access-token': token,
     },
-    url: 'https://smart-crowd-api.herokuapp.com/api/auth/me',
+    url: `${getConfig().BACKEND_URL}/auth/me`,
   })
     .then((response) => {
       Promise.resolve(response);
@@ -38,7 +39,7 @@ export const createEmailVerificationRequest = () => {
   }
 
   return axios({
-    url: `https://smart-crowd-api.herokuapp.com/api/auth/create-email-verification-request`,
+    url: `${getConfig().BACKEND_URL}/auth/create-email-verification-request`,
     method: 'GET',
     headers: {
       'x-access-token': token,
@@ -65,12 +66,12 @@ export const completeEmailVerificationRequest = (body) => {
   }
 
   return axios({
-    url: `https://smart-crowd-api.herokuapp.com/api/auth/complete-email-verification-request`,
+    url: `${getConfig().BACKEND_URL}/auth/complete-email-verification-request`,
     method: 'PATCH',
     headers: {
       'x-access-token': token,
     },
-    data: {...body}
+    data: { ...body },
   })
     .then((response) => {
       Promise.resolve(response);
@@ -80,4 +81,60 @@ export const completeEmailVerificationRequest = (body) => {
       Promise.reject(error);
       return error.response.data;
     });
-}
+};
+
+export const validateForgetPasswordLink = (token) => {
+  return axios({
+    url: `${
+      getConfig().BACKEND_URL
+    }/auth/valid-forget-password-link?token=${token}`,
+    method: 'GET',
+  })
+    .then((response) => {
+      Promise.resolve(response);
+      return response.data;
+    })
+    .catch((error) => {
+      Promise.reject(error);
+      if (error.response.data.errors[0]) {
+        return {
+          validLink: false,
+          Message: error.response.data.errors[0].title,
+        };
+      }
+    });
+};
+
+export const resetPassword = (token, body) => {
+  return axios({
+    url: `${getConfig().BACKEND_URL}/auth/reset-password`,
+    method: 'PATCH',
+    headers: {
+      'x-access-token': token,
+    },
+    data: body,
+  })
+    .then((response) => {
+      Promise.resolve(response);
+      return response.data;
+    })
+    .catch((error) => {
+      Promise.reject(error);
+      return error.response.data;
+    });
+};
+
+export const submitForgetPasswordEmail = (body) => {
+  return axios({
+    url: `${getConfig().BACKEND_URL}/auth/forget-password`,
+    method: 'POST',
+    data: body,
+  })
+    .then((response) => {
+      Promise.resolve(response);
+      return response.data.Message;
+    })
+    .catch((error) => {
+      return error.response.data;
+    });
+};
