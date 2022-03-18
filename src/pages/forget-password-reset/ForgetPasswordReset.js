@@ -18,6 +18,7 @@ const ForgetPasswordReset = (props) => {
   const [navHeader, setNavHeader] = useState('');
   const [link, setLink] = useState(null);
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [submitClicked, setSubmitClicked] = useState(false);
   const [errors, setErrors] = useState(false);
   const [passwordReset, setPasswordReset] = useState(false);
@@ -92,6 +93,13 @@ const ForgetPasswordReset = (props) => {
                       name="firstname"
                       placeholder="Password*"
                       onChange={(event) => handleChange(event, setPassword)}
+                    />
+                    <label>Confirm Password</label>
+                    <input
+                      type="text"
+                      name="firstname"
+                      placeholder="Password*"
+                      onChange={(event) => handleChange(event, setConfirmPassword)}
                     />
                     <div className="btn-wrapper">
                       <button

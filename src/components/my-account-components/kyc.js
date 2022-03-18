@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 import { uploadDocs } from '../../actions/kyc';
+import { COUNTRIES } from '../../constants/countries';
 
 const KYCComponent = (props) => {
   const kycImages = props.user?.kycImages ? props.user.kycImages : false;
@@ -11,7 +12,12 @@ const KYCComponent = (props) => {
     kycBack: null,
   });
   const [documentsUploaded, setDocumentsUploaded] = useState(false);
+  const [documentsType, setDocumentsType] = useState('');
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    console.log(documentsType)
+  }, [documentsType ])
 
   const onFileChange = (event) => {
     let file = event.target.files[0];
@@ -54,6 +60,35 @@ const KYCComponent = (props) => {
             The images can be of entensions .png, .jpg, and .jpeg.
           </p>
 
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="input-item">
+                <label>
+                  <b>Type of Document</b>
+                </label>
+                <select className="nice-select" onChange={(e)=>{setDocumentsType(e.target.value)}} value={documentsType}>
+                  <option>None</option>
+                  <option value="id">Govt Issued ID</option>
+                  <option value="id">Drivers Liscence</option>
+                  <option value="id">Passport</option>
+                </select>
+              </div>
+            </div>
+            <div className="col-lg-6">
+              <div className="input-item">
+                <label>
+                  <b>Country of origin</b>
+                </label>
+                <select onChange={(e)=>console.log(e.target)}>
+                  <option value="none">None</option>
+                  {COUNTRIES.map((country, index) => (
+                    <option value={country.code} key={index}>{country.name}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
           <h6>1. Front Side</h6>
           <input
             type="file"
@@ -92,7 +127,10 @@ const KYCComponent = (props) => {
       {verifiedUser && (
         <div className="ltn__myaccount-tab-content-inner">
           <br />
-          <p><strong>Status: </strong>Your identity has been verified by our verification service.</p>
+          <p>
+            <strong>Status: </strong>Your identity has been verified by our
+            verification service.
+          </p>
         </div>
       )}
     </div>

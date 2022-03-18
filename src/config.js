@@ -9,7 +9,7 @@ const config = {
   },
 };
 
-const ENVIRONMENT = 'production';
+const ENVIRONMENT = 'development';
 
 const getConfig = () => {
   if (ENVIRONMENT === 'development') {

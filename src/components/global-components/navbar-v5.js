@@ -11,18 +11,18 @@ const NavbarV5 = (props) => {
   const [cart, setCart] = useState({
     cartItems: new Array(),
     cartItemsCount: 0,
-    cartNetTotal: 0.0
+    cartNetTotal: 0.0,
   });
 
   useEffect(() => {
     if (Object.keys(props.user).length) {
-      getCartContents(props.user.id).then((response) =>{
+      getCartContents(props.user.id).then((response) => {
         console.log(response.data.CartItems);
         setCart({
           cartItems: response.data.CartItems,
           cartItemsCount: response.data.CartItems.length,
           cartNetTotal: response.data.NetTotal,
-        })
+        });
       });
     }
   }, [props.user]);
@@ -165,7 +165,9 @@ const NavbarV5 = (props) => {
                           </span>
                           <h6>
                             <span>Your Cart</span>{' '}
-                            <span className="ltn__secondary-color">${cart.cartNetTotal}</span>
+                            <span className="ltn__secondary-color">
+                              ${cart.cartNetTotal}
+                            </span>
                           </h6>
                         </a>
                       </div>
@@ -228,6 +230,9 @@ const NavbarV5 = (props) => {
                         <li>
                           <Link to="/team">Team</Link>
                         </li>
+                        <li>
+                          <Link to="/faq">FAQ</Link>
+                        </li>
                       </ul>
                     </div>
                   </nav>
@@ -241,7 +246,7 @@ const NavbarV5 = (props) => {
       {/* HEADER AREA END */}
       {/* Utilize Cart Menu Start */}
 
-      <CartSlider user={props.user} cart={cart}/>
+      <CartSlider user={props.user} cart={cart} />
 
       {/* Utilize Cart Menu End */}
 

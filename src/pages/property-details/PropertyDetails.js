@@ -28,7 +28,7 @@ const PropertyDetails = (props) => {
   return (
     <div>
       <Navbar header={navHeader} user={currentUser} />
-      <PageHeader headertitle="Property Details" customclass="mb-0" />
+      <PageHeader headertitle="Property Details" customclass="mb-5" />
       <ProductSlider images={propertyData?.Images} id={id}/>
       <ProductDetails property={propertyData} user={currentUser}/>
       <Footer />

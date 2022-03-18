@@ -12,19 +12,19 @@ class Page_header extends Component {
     return (
       <div
         className={
-          'ltn__breadcrumb-areas text-left bg-overlay-white-30 bg-image ' +
+          'ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image ' +
           CustomClass
         }
-        // data-bs-bg={publicUrl + 'assets/img/page-header/stock-track.jpg'}
+        data-bs-bg={publicUrl + 'assets/img/banner.jpg'}
       >
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
               <div className="ltn__breadcrumb-inner">
-                <h1 className="page-title">{HeaderTitle}</h1>
+                <h1 className="page-title" style={{color: 'whitesmoke'}}>{HeaderTitle}</h1>
                 <div className="ltn__breadcrumb-list">
                   <ul>
-                    <li>
+                    <li style={{color: 'black'}}>
                       <Link to="/">
                         <span className="ltn__secondary-color">
                           <i className="fas fa-home" />
@@ -32,7 +32,7 @@ class Page_header extends Component {
                         Home
                       </Link>
                     </li>
-                    <li>{Subheader}</li>
+                    <li style={{color: 'whitesmoke'}} >{Subheader}</li>
                   </ul>
                 </div>
               </div>

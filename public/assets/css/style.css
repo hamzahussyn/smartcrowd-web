@@ -3265,9 +3265,9 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 ---------------------------------------------------- */
 .ltn__breadcrumb-area {
   background-color: var(--section-bg-1);
-  margin-bottom: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px; }
+  margin-bottom: 120px;
+  padding-top: 110px;
+  padding-bottom: 110px; }
 
 .ltn__breadcrumb-list ul {
   margin: 0;
@@ -14450,6 +14450,11 @@ input.cart-plus-minus-box {
   line-height: 'normal';
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.scroller{
+  height:100px;
+  overflow-y: scroll;
 }
 
 .password-input{

@@ -19,6 +19,7 @@ import NotFound from './pages/not-found/NotFound';
 import ForgetPassword from './pages/forget-password/ForgetPassword';
 import ForgetPasswordReset from './pages/forget-password-reset/ForgetPasswordReset';
 import { getCurrentUser } from './actions/user';
+import Faq from './pages/faq/Faq';
 
 
 const TestComponent = () => {
@@ -38,6 +39,7 @@ class Root extends Component {
           <Route path="/team" element={<Team/>}/>
           <Route path="/property/:id" element={<PropertyDetails/>}/>
           <Route path="/cart" element={<Cart/>}/>
+          <Route path="/faq" element={<Faq/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/my-account" element={<MyAccount/>}/>
